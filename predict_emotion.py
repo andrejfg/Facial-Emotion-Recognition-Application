@@ -29,7 +29,6 @@ def preprocessa_imagem(imagem, modelo):
 
 
 def add_box_to_frame(frame):
-    # frame = np.zeros([480, 640, 4], dtype=np.uint8)
     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
     faces = face_recognition.face_locations(gray)
     for (top, right, bottom, left) in faces:
@@ -38,8 +37,5 @@ def add_box_to_frame(frame):
         frame = cv2.rectangle(frame, (left-50, top-50), (right+50, bottom+50), (255, 0, 0), 2)
         frame = cv2.rectangle(frame,(left-50, bottom + 15 ), (right+50, bottom+50), (255, 0, 0), cv2.FILLED)
         frame = cv2.putText(frame,emocoes[resultado[0]], (left, bottom +40), font, 1.0, (255, 255, 255), 1)
-
-    # frame[:, :, 3] = (frame.max(axis=2) > 0).astype(int) * 255
-
     return frame
 
